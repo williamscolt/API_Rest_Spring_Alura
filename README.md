@@ -1,4 +1,4 @@
-# API_Rest_Spring_Alura
+# API Spring Foro Alura
 
 El foro alura es un lugar donde todos los alumnos de la plataforma alura
 pueden colocar sus preguntas sobre determinados cursos, 
@@ -14,7 +14,7 @@ o como se relacionan los usuarios con las respuestas de un tópico?
 Ese es nuestro desafío!!
 Se replicó a nivel de back end este proceso, y para eso he creado una API REST usando Spring.
 
-Esta API va a centrarse específicamente en los tópicos, y permite a los usuarios:
+Esta API va a centrarse específicamente en los tópicos, y permitir a los usuarios:
 
 -Crear un nuevo tópico
 
