@@ -1,6 +1,8 @@
 package com.salomone.foro_alura;
 
 
+import com.salomone.foro_alura.exception.DuplicateTopicException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,12 @@ public class TopicController {
     }
 
     @PostMapping
-    public Topic createTopic(@RequestBody Topic topic) {
+    public Topic createTopic(@RequestBody @Valid Topic topic) {
+        if (topicRepository.findByTitulo(topic.getTitulo()) != null ||
+                topicRepository.findByMensaje(topic.getMensaje()) != null) {
+            throw new DuplicateTopicException("El título o el contenido ya existen");
+        }
+
         return topicRepository.save(topic);
     }
 
@@ -38,6 +45,7 @@ public class TopicController {
                 .map(topic -> {
                     topic.setTitulo(updatedTopic.getTitulo());
                     topic.setMensaje(updatedTopic.getMensaje());
+                    topic.setCurso(updatedTopic.getCurso());
                     return topicRepository.save(topic);
                 })
                 .orElseThrow(() -> new RuntimeException("Topico no funciona con el id " + id));

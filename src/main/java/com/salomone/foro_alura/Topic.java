@@ -3,6 +3,7 @@ package com.salomone.foro_alura;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Date;
 @Table(name = "topics")
@@ -11,12 +12,20 @@ public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Column(unique = true)
     private String titulo;
+    @NotNull
+    @Column(unique = true)
     private String mensaje;
+    @NotNull
     @Column(name = "fecha_Creacion")
     private Date fecha_Creacion;
+    @NotNull
     private String status;
+    @NotNull
     private String autor;
+    @NotNull
     private String curso;
 
 
